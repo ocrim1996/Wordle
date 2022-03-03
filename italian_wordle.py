@@ -1,0 +1,35 @@
+import utility_functions as uf
+
+
+# Italian Wordle
+def italian_wordle():
+    rw, wl = uf.get_random_word_and_words_list("./dictionaries/italian5.txt")
+    attempt = 0
+    letters_not_present_tot = []
+    while attempt < 6:
+        uf.print_msg_box("TENTATIVO N° " + str(attempt + 1) + " di 6")
+        input_word = input("\U0000270F Inserire una parola di 5 lettere: ").lower()
+        while uf.check_not_5_letters(input_word) or uf.check_not_in_list(input_word, wl):
+            print("\U000026A0 Parola non di 5 lettere o non esistente!!!")
+            input_word = input("\U0000270F Inserire una parola di 5 lettere: ").lower()
+        current, cw, wp, np = uf.wordle(rw, input_word)
+        wrong_letters_pos = []
+        wrong_letters_pos.extend(wp)
+        wrong_letters_pos = sorted(wrong_letters_pos)
+        letters_not_present_tot.extend(np)
+        letters_not_present_tot = sorted(list(dict.fromkeys(letters_not_present_tot)))
+        print("\U000027A1 La parola corrente: ", current)
+        print("• Lettere giuste in posizione corretta: ", cw)
+        print("• Lettere giuste in posizione sbagliata: ", wrong_letters_pos)
+        print("• Lettere non presenti nella parola: ", letters_not_present_tot)
+        print()
+        if input_word == rw:
+            print("\U00002705 BRAVO, hai trovato la parola corretta \U0001F603")
+            print("*" * 50 + "\n")
+            break
+        attempt = attempt + 1
+    if input_word != rw:
+        print("\U0000274E PECCATO, ritenta sarai più fortunato \U0000274E")
+        print("\n\U000027A1 La parola corretta era: " + rw)
+        print("*" * 50 + "\n")
+

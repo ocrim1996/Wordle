@@ -11,8 +11,8 @@ In this project the Wordle game was developed to be executed from the command li
 
 Available languages:
 
-- Italian
-- English
+- **Italian**
+- **English**
 
 # To Run
 

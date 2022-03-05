@@ -4,6 +4,7 @@ import utility_functions as uf
 # Italian Wordle
 def italian_wordle():
     rw, wl = uf.get_random_word_and_words_list("./dictionaries/italian5.txt")
+    #rw = "slavo"
     attempt = 0
     letters_not_present_tot = []
     while attempt < 6:

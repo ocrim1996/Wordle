@@ -76,6 +76,13 @@ def wordle(w, word):
         elif word[i] in w and word[i] in new_w and w_freq[word[i]] == word_freq[word[i]]:
             wrong_positions.append(word[i])
             current = current + " _ "
+        elif word[i] in w and word[i] in new_w and w_freq[word[i]] != word_freq[word[i]]:
+            wrong_positions.append(word[i])
+            current = current + " _ "
+            wrong_positions_freq = get_freq(wrong_positions)
+            if wrong_positions_freq[word[i]] != w_freq[word[i]]:
+                wrong_positions.remove(word[i])
+                letters_not_present.append(word[i])
         else:
             letters_not_present.append(word[i])
             current = current + " _ "
